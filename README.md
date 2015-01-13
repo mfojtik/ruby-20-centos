@@ -7,6 +7,7 @@ of the base image for deploying Ruby 2.0 applications as reproducible Docker
 images. The resulting images can be run either by [Docker](http://docker.io)
 or using [STI](https://github.com/openshift/source-to-image).
 
+
 Installation
 ---------------
 
