@@ -32,7 +32,11 @@
         "exposeDockerSocket": true,
         "env": [
           { "name": "IMAGE_NAME", "value": "openshift/ruby-20-centos"}
-        ]
+        ],
+        "output": {
+          "imageTag": "openshift/ruby-20-centos:qa-ready",
+          "registry": "172.30.17.3:5001"
+        }
       }
     }
   },
