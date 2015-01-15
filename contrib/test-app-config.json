@@ -16,7 +16,9 @@
     {
       "kind": "ImageRepository",
       "apiVersion": "v1beta1",
-      "id": "ruby-20-centos",
+      "metadata": {
+        "name": "ruby-20-centos"
+      },
       "dockerImageRepository": "172.30.17.3:5001/openshift/ruby-20-centos",
       "labels": {
         "name": "ruby-20-centos"
@@ -48,12 +50,12 @@
           "stiStrategy": {
             "image": "172.30.17.3:5001/openshift/ruby-20-centos",
             "scripts": "http://raw.githubusercontent.com/openshift/ruby-20-centos/master/.sti/bin"
-          },
-	},
-	"output": {
-	   "imageTag": "openshift/origin-ruby-sample:latest",
-	   "registry": "172.30.17.3:5001"
-	},
+          }
+        },
+        "output": {
+          "imageTag": "openshift/origin-ruby-sample:latest",
+          "registry": "172.30.17.3:5001"
+        }
       },
       "labels": {
         "name": "ruby-sample-build"
