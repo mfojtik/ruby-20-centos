@@ -1,0 +1,72 @@
+{
+  "kind": "Config",
+  "apiVersion": "v1beta2",
+  "metadata": {
+    "name": "ruby-20-centos-testapp",
+    "description": "Ruby 2.0 test application config"
+  },
+  "items": [
+    {
+      "kind": "Service",
+      "apiVersion": "v1beta2",
+      "metadata": {
+        "name": "frontend"
+      },
+      "port": 9292,
+      "containerPort": 9292,
+      "selector": {
+        "name": "frontend"
+      }
+    },
+    {
+      "kind": "ImageRepository",
+      "apiVersion": "v1beta2",
+      "metadata":{
+        "name": "ruby-20-centos"
+      },
+      "dockerImageRepository": "172.30.17.3:5001/openshift/ruby-20-centos",
+      "labels": {
+        "name": "ruby-20-centos"
+      }
+    },
+    {
+      "kind": "BuildConfig",
+      "apiVersion": "v1beta2",
+      "metadata":{
+        "name": "ruby-sample-build"
+      },
+      "triggers": [
+        {
+          "type": "imageChange",
+          "imageChange": {
+            "image": "172.30.17.3:5001/openshift/ruby-20-centos",
+            "imageRepositoryRef": { "name": "ruby-20-centos"},
+            "tag":"qa-ready"
+          }
+        }
+      ],
+      "parameters": {
+        "source" : {
+          "type" : "Git",
+          "git" : {
+            "uri": "https://github.com/mfojtik/sinatra-app-example"
+          }
+        },
+        "strategy": {
+          "type": "STI",
+          "stiStrategy": {
+            "image": "172.30.17.3:5001/openshift/ruby-20-centos",
+            "scripts": "http://raw.githubusercontent.com/openshift/ruby-20-centos/master/.sti/bin"
+          }
+        },
+        "output": {
+          "imageTag": "openshift/origin-ruby-sample:latest",
+          "registry": "172.30.17.3:5001"
+        }
+      },
+      "labels": {
+        "name": "ruby-sample-build"
+      }
+    }
+  ]
+}
