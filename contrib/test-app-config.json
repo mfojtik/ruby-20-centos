@@ -32,7 +32,7 @@
           "imageChange": {
             "image": "172.30.17.3:5001/openshift/ruby-20-centos",
             "imageRepositoryRef": { "name": "ruby-20-centos"},
-            "tag":"qa_ready"
+            "tag":"latest"
           }
         }
       ],
